@@ -9,6 +9,10 @@ function App() {
 
   const [operations, setOperations] = useState([]);
 
+  const handleDelete = (id) => {
+    setOperations(prevOperations => prevOperations.filter(op => op.id !== id));
+  };
+
   useEffect(() => {
     const saved = localStorage.getItem('operations');
     if (saved) {
@@ -91,6 +95,8 @@ function App() {
               type={op.type}
               category={op.category}
               amount={op.amount}
+              id={op.id}
+              onDelete={handleDelete}
             />
           ))
         )}

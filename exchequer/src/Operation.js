@@ -1,8 +1,12 @@
 import React from 'react';
 
-function OperationCard({ type, category, amount }) {
+function OperationCard({ type, category, amount, id,  onDelete}) {
     const typeLabel = type === 'income' ? 'Доход' : 'Расход';
     const formattedAmount = type === 'expense' ? `-${amount} ₽` : `+${amount} ₽`;
+
+    const handleDelete = () => {
+        onDelete(id);
+    };
 
     return (
         <div className={'operation_card'}>
@@ -11,7 +15,7 @@ function OperationCard({ type, category, amount }) {
                 <div className="card-type">{ typeLabel }</div>
             </div>
             <div className="card-amount"> {formattedAmount}</div>
-            <button className="delete-btn">Делит</button>
+            <button className="delete-btn" onClick={handleDelete}>Делит</button>
 
         </div>
     );
