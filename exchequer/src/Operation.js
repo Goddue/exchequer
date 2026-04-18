@@ -1,4 +1,5 @@
 import React from 'react';
+import './Operation.css';
 
 function OperationCard({ type, category, amount, id,  onDelete}) {
     const typeLabel = type === 'income' ? 'Доход' : 'Расход';

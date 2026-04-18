@@ -48,9 +48,9 @@ function App() {
   return (
     <div className="App">
        <div className="summary">
-        <div className="card income">Доход: {income} ₽</div>
-        <div className="card expense">Расход: {expense} ₽</div>
-        <div className="card balance">Балванс: {balance} ₽
+        <div className="card">Доход: {income} ₽</div>
+        <div className="card">Расход: {expense} ₽</div>
+        <div className="card">Балванс: {balance} ₽
         </div>
       </div>
 
