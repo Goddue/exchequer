@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+button {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 40px;
+  color: #b91c1c;
+}
+
 body {
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   background: gainsboro;

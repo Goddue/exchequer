@@ -1,0 +1,14 @@
+.operation_card {
+  background: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 40px;
+  color: #b91c1c;
+}
