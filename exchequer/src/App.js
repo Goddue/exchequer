@@ -12,9 +12,18 @@ function App() {
   const [amount, setAmount] = useState('');
 
   const [operations, setOperations] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('operations');
+    if (saved) {
+      setOperations(JSON.parse(saved));
+    }
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('operations', JSON.stringify(operations));
   }, [operations]);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const newOperation = {
@@ -25,7 +34,6 @@ function App() {
     };
 
     setOperations([...operations, newOperation]);
-    // Очищаем поля формы (категорию и сумму, тип оставляем как был)
     setCategory('');
     setAmount('');
   };
@@ -51,7 +59,6 @@ function App() {
           <label>Категория:</label>
           <input
             type="text"
-            placeholder="еда, зарплата..."
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
@@ -72,7 +79,18 @@ function App() {
         <button type="submit">Добавить</button>   {}
       </form>
       <div className='operations_list'>
-        <OperationCard type="income" category="Зарплата" amount="50000"/>
+        {operations.length === 0 ? (
+          <p>Нет операций. Добавьте первую!</p>
+        ) : (
+          operations.map(op => (
+            <OperationCard
+              key={op.id}
+              type={op.type}
+              category={op.category}
+              amount={op.amount}
+            />
+          ))
+        )}
       </div>
     </div>
   );
