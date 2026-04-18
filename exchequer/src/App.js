@@ -3,10 +3,6 @@ import OperationCard from './Operation';
 import { useState, useEffect } from 'react';
 
 function App() {
-  let balance = 0;
-  let expence = 0;
-  let income = 0;
-
   const [type, setType] = useState('expense');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
@@ -23,7 +19,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('operations', JSON.stringify(operations));
   }, [operations]);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newOperation = {
@@ -38,12 +34,19 @@ function App() {
     setAmount('');
   };
 
+  let income = 0, expense = 0;
+  operations.forEach(op => {
+    if (op.type === 'income') income += op.amount;
+    else expense += op.amount;
+  });
+  const balance = income - expense;
+
   return (
     <div className="App">
        <div className="summary">
-        <div className="card income">Доход: {balance} ₽</div>
-        <div className="card expense">Расход: {income} ₽</div>
-        <div className="card balance">Балванс: {expence} ₽
+        <div className="card income">Доход: {income} ₽</div>
+        <div className="card expense">Расход: {expense} ₽</div>
+        <div className="card balance">Балванс: {balance} ₽
         </div>
       </div>
 

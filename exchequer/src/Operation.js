@@ -2,7 +2,6 @@ import React from 'react';
 
 function OperationCard({ type, category, amount }) {
     const typeLabel = type === 'income' ? 'Доход' : 'Расход';
-    // Форматируем сумму: для расходов добавляем минус
     const formattedAmount = type === 'expense' ? `-${amount} ₽` : `+${amount} ₽`;
 
     return (
