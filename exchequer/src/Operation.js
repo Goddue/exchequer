@@ -10,7 +10,9 @@ function OperationCard({ type, category, amount }) {
                 <div className="card-category">{ category }</div>
                 <div className="card-type">{ typeLabel }</div>
             </div>
-            <div className="card-amount"> { formattedAmount }</div>
+            <div className="card-amount"> {formattedAmount}</div>
+            <button className="delete-btn">Делит</button>
+
         </div>
     );
 };
