@@ -87,7 +87,7 @@ function App() {
       </form>
       <div className='operations_list'>
         {operations.length === 0 ? (
-          <p>Нет операций. Добавьте первую!</p>
+          <p>Нет операций</p>
         ) : (
           operations.map(op => (
             <OperationCard
