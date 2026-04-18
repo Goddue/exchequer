@@ -1,10 +1,35 @@
 import './App.css';
 import OperationCard from './Operation';
+import { useState, useEffect } from 'react';
 
 function App() {
   let balance = 0;
   let expence = 0;
   let income = 0;
+
+  const [type, setType] = useState('expense');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState('');
+
+  const [operations, setOperations] = useState([]);
+  useEffect(() => {
+    localStorage.setItem('operations', JSON.stringify(operations));
+  }, [operations]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newOperation = {
+      id: Date.now(),
+      type: type,
+      category: category.trim(),
+      amount: parseFloat(amount),
+    };
+
+    setOperations([...operations, newOperation]);
+    // Очищаем поля формы (категорию и сумму, тип оставляем как был)
+    setCategory('');
+    setAmount('');
+  };
+
   return (
     <div className="App">
        <div className="summary">
@@ -14,10 +39,10 @@ function App() {
         </div>
       </div>
 
-      <form className="add_form">
+      <form className="add_form" onSubmit={handleSubmit}>
         <div className="form_group">
           <label>Тип:</label>
-          <select>
+          <select value={type} onChange={(e) => setType(e.target.value)}>
             <option value="expense">Расход</option>
             <option value="income">Доход</option>
           </select>
@@ -27,6 +52,8 @@ function App() {
           <input
             type="text"
             placeholder="еда, зарплата..."
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             required
           />
         </div>
@@ -37,6 +64,8 @@ function App() {
             step="0.01"
             min="0.01"
             placeholder="0.00"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
             required
           />
         </div>
